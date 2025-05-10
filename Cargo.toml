@@ -1,0 +1,24 @@
+[package]
+name = "swissmilk"
+version = "0.1.0"
+edition = "2024"
+description = "A FIDE compatible (*) pairing engine"
+license = "BSD-3-Clause"
+repository = "https://github.com/datawater/swissmilk_rs"
+readme = "README.md"
+keywords = ["fide", "swiss", "chess"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+itertools = "0.14.0"
+
+[profile.release]
+strip = true
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.dev]
+debug = 1
+codegen-units = 2048
+split-debuginfo = "unpacked"
