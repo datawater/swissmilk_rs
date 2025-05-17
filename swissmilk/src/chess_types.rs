@@ -1,8 +1,10 @@
 use core::ops::Not;
 
-#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, PartialOrd, Ord, Default)]
+use num_derive::FromPrimitive;
+
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, PartialOrd, Ord, Default, FromPrimitive)]
 #[repr(u8)]
-#[expect(clippy::upper_case_acronyms, reason = "Official names from FIDE")]
+#[expect(clippy::exhaustive_enums, reason = "Should never change")]
 pub enum Title {
     #[default]
     None,
@@ -16,7 +18,8 @@ pub enum Title {
     GM,
 }
 
-#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, Default)]
+#[expect(clippy::exhaustive_enums, reason = "Should never change")]
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, Default, FromPrimitive)]
 pub enum Color {
     #[default]
     None,
@@ -24,7 +27,8 @@ pub enum Color {
     Black,
 }
 
-#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, PartialOrd, Ord, Default)]
+#[expect(clippy::exhaustive_enums, reason = "Should never change")]
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, PartialOrd, Ord, Default, FromPrimitive)]
 pub enum ColorPreferenceLevel {
     #[default]
     None,
@@ -37,11 +41,13 @@ pub enum ColorPreferenceLevel {
 pub struct ColorPreference {
     color: Color,
     level: ColorPreferenceLevel,
+    width: u8,
 }
 
 impl Not for Color {
     type Output = Self;
 
+    #[inline]
     fn not(self) -> Self::Output {
         match self {
             Self::None => self,
@@ -52,8 +58,22 @@ impl Not for Color {
 }
 
 impl ColorPreference {
+    #[inline]
     pub const fn new(color: Color, level: ColorPreferenceLevel) -> Self {
-        Self { color, level }
+        Self {
+            color,
+            level,
+            width: 0,
+        }
+    }
+
+    #[inline]
+    pub const fn new_with_width(color: Color, level: ColorPreferenceLevel, width: u8) -> Self {
+        Self {
+            color,
+            level,
+            width,
+        }
     }
 }
 

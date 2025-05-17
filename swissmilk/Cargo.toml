@@ -1,6 +1,5 @@
 [package]
-# https://en.wikipedia.org/wiki/Tilsit_cheese
-name = "tilsit"
+name = "swissmilk"
 version = "0.1.0"
 edition = "2024"
 description = "A FIDE compatible (*) pairing engine"
@@ -10,16 +9,11 @@ readme = "README.md"
 keywords = ["fide", "swiss", "chess"]
 categories = ["command-line-utilities"]
 
+
 [dependencies]
-swissmilk = { path = "./swissmilk" }
-
-[profile.release]
-strip = true
-lto = true
-codegen-units = 1
-panic = "abort"
-
-[profile.dev]
-debug = 1
-codegen-units = 2048
-split-debuginfo = "unpacked"
+itertools = "0.14.0"
+num = "0.4.3"
+num-derive = "0.4.2"
+num-traits = "0.2.19"
+rustc-hash = "2.1.1"
+smallvec = { version = "1.15.0", features = ["union", "const_generics", "specialization"] }
