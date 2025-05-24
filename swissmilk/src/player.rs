@@ -1,8 +1,6 @@
-use num::FromPrimitive as _;
-
 use crate::chess_types::{Color, ColorPreference, ColorPreferenceLevel, Title};
-use crate::tournament::Tournament;
 use crate::random::{self, NewRandom};
+use crate::tournament::Tournament;
 
 use std::cmp::Ordering;
 
@@ -87,7 +85,10 @@ impl Player {
         }
     }
 
-    #[expect(clippy::missing_inline_in_public_items, reason = "Too big of a function")]
+    #[expect(
+        clippy::missing_inline_in_public_items,
+        reason = "Too big of a function"
+    )]
     pub fn get_dutch_color_preference(&self) -> ColorPreference {
         let chl = self.color_history.len();
 
@@ -144,13 +145,16 @@ impl Player {
 const NAMES: [&str; 200] = include!("../../data/names.txt");
 
 impl NewRandom for PlayerInfo {
-    #[expect(clippy::missing_inline_in_public_items, reason = "Too big of a function")]
+    #[expect(
+        clippy::missing_inline_in_public_items,
+        reason = "Too big of a function"
+    )]
     fn new_random() -> Self {
         let id = random::rand::<u64>();
         let name = NAMES[random::rand::<u32>() as usize % 200].to_owned()
             + &((random::rand::<u32>() % u32::from(u16::MAX)).to_string());
         let rating = random::rand::<u32>() as u16 % 2000 + 1000;
-        let title = Title::from_u32(random::rand::<u32>() % 9).expect("UNREACHABLE");
+        let title = Title::try_from(random::rand::<u32>() as i32 % 9).expect("UNREACHABLE");
 
         Self {
             id,

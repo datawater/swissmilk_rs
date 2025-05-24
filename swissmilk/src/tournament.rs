@@ -96,21 +96,20 @@ impl Tournament {
     #[inline]
     pub const fn get_pairing_system_type(&self) -> PairingSystemType {
         self.pairing_system
-    } 
+    }
 
-    #[expect(clippy::missing_inline_in_public_items, reason = "Too big of a function")]
+    #[expect(
+        clippy::missing_inline_in_public_items,
+        reason = "Too big of a function"
+    )]
     pub fn pair(&mut self) -> Result<Vec<Pairing>, Box<dyn Error>> {
         if !self.has_started() {
             self.start();
         }
 
-        match self.get_pairing_system_type() {
-            PairingSystemType::BergerTable => {
-                BergerTablePairingSystem::pair_round(self)
-            },
-            PairingSystemType::ClassicSwiss => {
-                DutchPairingSystem::pair_round(self)
-            }
+        match self.pairing_system {
+            PairingSystemType::BergerTable => BergerTablePairingSystem::pair_round(self),
+            PairingSystemType::ClassicSwiss => DutchPairingSystem::pair_round(self),
             PairingSystemType::DubovSwiss => todo!(),
             PairingSystemType::BursteinSwiss => todo!(),
             PairingSystemType::Lim => todo!(),
@@ -118,7 +117,7 @@ impl Tournament {
         }
     }
 
-    pub(in crate) fn assign_pairing_numbers(&mut self) {
+    pub(crate) fn assign_pairing_numbers(&mut self) {
         let mut pairing_number = self.player_count() as u16;
 
         for (_, player) in self
@@ -131,7 +130,10 @@ impl Tournament {
         }
     }
 
-    #[expect(clippy::missing_inline_in_public_items, reason = "Too big of a function")]
+    #[expect(
+        clippy::missing_inline_in_public_items,
+        reason = "Too big of a function"
+    )]
     pub fn get_score_groups(&self) -> ScoreGroups {
         let mut scoregroup = ScoreGroups::new();
 
@@ -185,7 +187,10 @@ impl Tournament {
     }
 
     // I should probably put this in a trait
-    #[expect(clippy::missing_inline_in_public_items, reason = "Too big of a function")]
+    #[expect(
+        clippy::missing_inline_in_public_items,
+        reason = "Too big of a function"
+    )]
     pub fn as_string_csv_like(&mut self) -> Result<String, Box<dyn Error>> {
         let mut buffer = String::new();
         buffer.write_fmt(format_args!(

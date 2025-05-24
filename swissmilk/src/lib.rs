@@ -18,3 +18,4 @@ pub mod tournament;
 pub mod dutch;
 pub mod pairing_system;
 pub mod berger_table;
+mod utils;

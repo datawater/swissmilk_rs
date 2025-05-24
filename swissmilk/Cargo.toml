@@ -9,11 +9,18 @@ readme = "README.md"
 keywords = ["fide", "swiss", "chess"]
 categories = ["command-line-utilities"]
 
+[profile.release]
+strip = true
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.dev]
+codegen-backend = "cranelift"
+codegen-units = 2048
+debug = 1
+split-debuginfo = "unpacked"
 
 [dependencies]
 itertools = "0.14.0"
-num = "0.4.3"
-num-derive = "0.4.2"
-num-traits = "0.2.19"
-rustc-hash = "2.1.1"
 smallvec = { version = "1.15.0", features = ["union", "const_generics", "specialization"] }

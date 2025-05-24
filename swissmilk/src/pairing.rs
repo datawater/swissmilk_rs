@@ -27,7 +27,7 @@ impl Pairing {
             color_right,
         }
     }
-    
+
     #[inline]
     #[expect(
         clippy::cast_possible_truncation,

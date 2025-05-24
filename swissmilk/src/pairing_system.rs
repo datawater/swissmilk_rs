@@ -15,6 +15,6 @@ pub enum PairingSystemType {
     None,
 }
 
-pub(in crate) trait PairngSystem {
+pub(crate) trait PairngSystem {
     fn pair_round(tournament: &mut Tournament) -> Result<Vec<Pairing>, Box<dyn Error>>;
 }

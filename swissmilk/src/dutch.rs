@@ -1,14 +1,13 @@
 use std::error::Error;
 
 use itertools::Itertools as _;
-use num::FromPrimitive as _;
 
 use crate::chess_types::Color;
 use crate::pairing::Pairing;
 use crate::pairing_system::PairngSystem;
 use crate::tournament::Tournament;
 
-pub(in crate) struct DutchPairingSystem;
+pub(crate) struct DutchPairingSystem;
 
 impl PairngSystem for DutchPairingSystem {
     fn pair_round(tournament: &mut Tournament) -> Result<Vec<Pairing>, Box<dyn Error>> {
@@ -42,7 +41,7 @@ impl DutchPairingSystem {
         }
 
         for i in 0..player_count >> 1 {
-            let color_left = Color::from_u8((player_count % 2) as u8 + 1).ok_or("UNREACHABLE")?;
+            let color_left = Color::try_from((player_count % 2) as i32 + 1)?;
 
             pairings.push(Pairing::new(
                 *players[i].0,

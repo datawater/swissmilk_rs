@@ -12,14 +12,3 @@ categories = ["command-line-utilities"]
 
 [dependencies]
 swissmilk = { path = "./swissmilk" }
-
-[profile.release]
-strip = true
-lto = true
-codegen-units = 1
-panic = "abort"
-
-[profile.dev]
-debug = 1
-codegen-units = 2048
-split-debuginfo = "unpacked"

@@ -1,40 +1,45 @@
-use core::ops::Not;
+use crate::back_to_enum;
+use std::ops::Not;
 
-use num_derive::FromPrimitive;
-
-#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, PartialOrd, Ord, Default, FromPrimitive)]
-#[repr(u8)]
-#[expect(clippy::exhaustive_enums, reason = "Should never change")]
-pub enum Title {
-    #[default]
-    None,
-    WCM,
-    WFM,
-    CM,
-    WIM,
-    FM,
-    WGM,
-    IM,
-    GM,
+back_to_enum! {
+    #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, PartialOrd, Ord, Default)]
+    #[repr(u8)]
+    #[expect(clippy::exhaustive_enums, reason = "Should never change")]
+    pub enum Title {
+        #[default]
+        None,
+        WCM,
+        WFM,
+        CM,
+        WIM,
+        FM,
+        WGM,
+        IM,
+        GM,
+    }
 }
 
-#[expect(clippy::exhaustive_enums, reason = "Should never change")]
-#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, Default, FromPrimitive)]
-pub enum Color {
-    #[default]
-    None,
-    White,
-    Black,
+back_to_enum! {
+    #[expect(clippy::exhaustive_enums, reason = "Should never change")]
+    #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, Default)]
+    pub enum Color {
+        #[default]
+        None,
+        White,
+        Black,
+    }
 }
 
-#[expect(clippy::exhaustive_enums, reason = "Should never change")]
-#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, PartialOrd, Ord, Default, FromPrimitive)]
-pub enum ColorPreferenceLevel {
-    #[default]
-    None,
-    Mild,
-    Strong,
-    Absolute,
+back_to_enum! {
+    #[expect(clippy::exhaustive_enums, reason = "Should never change")]
+    #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, PartialOrd, Ord, Default)]
+    pub enum ColorPreferenceLevel {
+        #[default]
+        None,
+        Mild,
+        Strong,
+        Absolute,
+    }
 }
 
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, Default)]

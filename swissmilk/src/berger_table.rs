@@ -9,7 +9,7 @@ use crate::pairing_system::PairngSystem;
 use crate::player::Player;
 use crate::tournament::Tournament;
 
-pub(in crate) struct BergerTablePairingSystem;
+pub(crate) struct BergerTablePairingSystem;
 
 impl PairngSystem for BergerTablePairingSystem {
     // TODO: Tests for BergerTablePairingSystem::pair_round
