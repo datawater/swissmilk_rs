@@ -3,7 +3,6 @@ use crate::player::PlayerId;
 use crate::tournament::Tournament;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-#[expect(clippy::exhaustive_structs, reason = "Should never change")]
 pub struct Pairing {
     pub left: PlayerId,
     pub right: Option<PlayerId>,
@@ -29,10 +28,6 @@ impl Pairing {
     }
 
     #[inline]
-    #[expect(
-        clippy::as_conversions,
-        reason = "Difference is never above 255"
-    )]
     pub fn get_score_difference(&self, tournament: &Tournament) -> u8 {
         if self.right.is_none() {
             return 0;

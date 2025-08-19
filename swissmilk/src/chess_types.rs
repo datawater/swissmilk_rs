@@ -4,7 +4,6 @@ use std::ops::Not;
 back_to_enum! {
     #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, PartialOrd, Ord, Default)]
     #[repr(u8)]
-    #[expect(clippy::exhaustive_enums, reason = "Should never change")]
     pub enum Title {
         #[default]
         None,
@@ -20,7 +19,6 @@ back_to_enum! {
 }
 
 back_to_enum! {
-    #[expect(clippy::exhaustive_enums, reason = "Should never change")]
     #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, Default)]
     pub enum Color {
         #[default]
@@ -31,7 +29,6 @@ back_to_enum! {
 }
 
 back_to_enum! {
-    #[expect(clippy::exhaustive_enums, reason = "Should never change")]
     #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, PartialOrd, Ord, Default)]
     pub enum ColorPreferenceLevel {
         #[default]

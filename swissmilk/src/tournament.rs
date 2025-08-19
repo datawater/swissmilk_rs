@@ -98,10 +98,7 @@ impl Tournament {
         self.pairing_system
     }
 
-    #[expect(
-        clippy::missing_inline_in_public_items,
-        reason = "Too big of a function"
-    )]
+    #[inline]
     pub fn pair(&mut self) -> Result<Vec<Pairing>, Box<dyn Error>> {
         if !self.has_started() {
             self.start();
@@ -130,10 +127,6 @@ impl Tournament {
         }
     }
 
-    #[expect(
-        clippy::missing_inline_in_public_items,
-        reason = "Too big of a function"
-    )]
     pub fn get_score_groups(&self) -> ScoreGroups {
         let mut scoregroup = ScoreGroups::new();
 
@@ -187,10 +180,6 @@ impl Tournament {
     }
 
     // I should probably put this in a trait
-    #[expect(
-        clippy::missing_inline_in_public_items,
-        reason = "Too big of a function"
-    )]
     pub fn as_string_csv_like(&mut self) -> Result<String, Box<dyn Error>> {
         let mut buffer = String::new();
         buffer.write_fmt(format_args!(

@@ -7,7 +7,6 @@ use std::cmp::Ordering;
 pub type PlayerId = u64;
 
 #[derive(Debug, Clone, Hash, PartialEq, Eq, Default)]
-#[expect(clippy::exhaustive_structs, reason = "Should never change")]
 pub struct PlayerInfo {
     pub id: PlayerId,
     pub name: String,
@@ -58,7 +57,6 @@ impl PlayerInfo {
 }
 
 impl PartialOrd for PlayerInfo {
-    #[expect(clippy::non_canonical_partial_ord_impl, reason = "")]
     #[inline]
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
         self.rating
@@ -85,10 +83,6 @@ impl Player {
         }
     }
 
-    #[expect(
-        clippy::missing_inline_in_public_items,
-        reason = "Too big of a function"
-    )]
     pub fn get_dutch_color_preference(&self) -> ColorPreference {
         let chl = self.color_history.len();
 
@@ -145,10 +139,7 @@ impl Player {
 const NAMES: [&str; 200] = include!("../../data/names.txt");
 
 impl NewRandom for PlayerInfo {
-    #[expect(
-        clippy::missing_inline_in_public_items,
-        reason = "Too big of a function"
-    )]
+    #[inline]
     fn new_random() -> Self {
         let id = random::rand::<u64>();
         let name = NAMES[random::rand::<u32>() as usize % 200].to_owned()
