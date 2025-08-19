@@ -30,7 +30,6 @@ impl Pairing {
 
     #[inline]
     #[expect(
-        clippy::cast_possible_truncation,
         clippy::as_conversions,
         reason = "Difference is never above 255"
     )]

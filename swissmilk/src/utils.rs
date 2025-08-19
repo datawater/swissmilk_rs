@@ -11,9 +11,10 @@ macro_rules! back_to_enum {
 
         impl std::convert::TryFrom<i32> for $name {
             type Error = String;
-
-            fn try_from(v: i32) -> Result<Self, Self::Error> {
-                match v {
+            
+            #[inline(always)]
+            fn try_from(value: i32) -> Result<Self, Self::Error> {
+                match value {
                     $(x if x == $name::$vname as i32 => Ok($name::$vname),)*
                     _ => Err("Couldn't convert in to enum.".to_string()),
                 }

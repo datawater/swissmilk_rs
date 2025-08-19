@@ -37,8 +37,8 @@ impl PairngSystem for BergerTablePairingSystem {
         let fixed = players[0];
         let mut rest = players[1..].to_vec();
 
-        let k = usize::from(round - 1) % (player_count - 1);
-        rest.rotate_left(k);
+        let k_coeff = usize::from(round - 1) % (player_count - 1);
+        rest.rotate_left(k_coeff);
 
         let mut full = Vec::with_capacity(player_count);
         full.push(fixed);
