@@ -1,2 +1,0 @@
-[build]
-rustflags = ["-Clink-args=-Wl,-zstack-size=1048576", "-Ctarget-cpu=native"]
